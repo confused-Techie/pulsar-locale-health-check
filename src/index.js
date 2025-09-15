@@ -71,6 +71,7 @@ class HealthCheck {
           hasDups: hasDups,
           usedKeyPaths: {},
           hasEnLocale: false,
+          totalKeyPaths: 0,
           dir: path.join(this.cwd, file, "../../"),
           errs: []
         };
@@ -144,6 +145,8 @@ class HealthCheck {
     };
 
     calculateKeyPaths(localeFile);
+
+    pack.totalKeyPaths = keyPaths.length;
 
     // Now with all keypaths, lets see if they are used
     for (const keyPath of keyPaths) {
@@ -250,6 +253,14 @@ class HealthCheck {
       if (description && this.isAutoTranslateLabel(description)) {
         this.checkLocaleLabelValidity(description, pack);
       }
+
+      if (pack.packageJson.configSchema[config].enum) {
+        for (let i = 0; i < pack.packageJson.configSchema[config].enum.length; i++) {
+          if (this.isAutoTranslateLabel(pack.packageJson.configSchema[config].enum[i].description)) {
+            this.checkLocaleLabelValidity(pack.packageJson.configSchema[config].enum[i].description, pack);
+          }
+        }
+      }
     }
   }
 
@@ -258,6 +269,10 @@ class HealthCheck {
     // for them within the locale file, find any missing items
     for (const menuPath in pack.menus) {
       const menuFile = pack.menus[menuPath];
+      if (!Array.isArray(menuFile.menu)) {
+        // This package contains no menus, abort
+        continue;
+      }
       for (let i = 0; i < menuFile.menu.length; i++) {
         const item = menuFile.menu[i];
 

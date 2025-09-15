@@ -20,7 +20,8 @@ const healthCheck = new HealthCheck(cwd, glob);
     console.table({
       has_duplicates: pack.hasDups,
       has_en_locale: pack.hasEnLocale,
-      has_errors: hasErrors
+      has_errors: hasErrors,
+      total_keypaths: pack.totalKeyPaths
     });
     if (hasErrors) {
       console.error(`\x1b[1mErrors\x1b[0m`);
