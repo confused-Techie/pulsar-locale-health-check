@@ -1,0 +1,17 @@
+{
+  "name": "pulsar-locale-health-check",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "glob": "^11.0.3",
+    "key-path-helpers": "github:pulsar-edit/key-path-helpers",
+    "season": "^6.0.2"
+  }
+}
