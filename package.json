@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "confused-Techie",
+  "license": "MIT",
   "dependencies": {
     "glob": "^11.0.3",
     "key-path-helpers": "github:pulsar-edit/key-path-helpers",
